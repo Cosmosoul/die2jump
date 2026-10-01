@@ -1,0 +1,56 @@
+{
+  "version": 11,
+  "generator": "Die to Jump Editor v11.0",
+  "feel": {
+    "maxWalkSpeed": 1.6,
+    "groundAccel": 0.7,
+    "airAccel": 0.55,
+    "stopFriction": 0.8,
+    "jumpMinHeight": 10,
+    "jumpMaxHeight": 34,
+    "jumpMaxHoldTime": 0.5,
+    "gravity": 0.42,
+    "maxFallSpeed": 7.5,
+    "coyoteTime": 0.1,
+    "jumpBufferTime": 0.12,
+    "edgeSnapDist": 6
+  },
+  "levels": [
+    {
+      "id": 1,
+      "name": "初试身手",
+      "chambers": [{ "id": "c1", "x": 0, "y": 0, "w": 400, "h": 88 }],
+      "elements": [
+        { "type": "platform", "x": 0, "y": 76, "w": 400, "h": 8 },
+        { "type": "heart", "x": 60, "y": 68, "w": 10, "h": 8 },
+        { "type": "flagPickup", "x": 130, "y": 68, "w": 10, "h": 8 },
+        { "type": "spike", "x": 180, "y": 68, "w": 10, "h": 8 },
+        { "type": "platform", "x": 210, "y": 56, "w": 64, "h": 8 },
+        { "type": "gravityFlip", "x": 300, "y": 40, "w": 12, "h": 8 },
+        { "type": "goal", "x": 380, "y": 68, "w": 10, "h": 8 }
+      ],
+      "initialLives": 3,
+      "initialFlags": 0,
+      "backgrounds": [],
+      "camera": { "deadZoneXLeft": 0.3, "deadZoneXRight": 0.7, "deadZoneYTop": 0.32, "deadZoneYBottom": 0.68, "viewW": 300, "viewH": 88 }
+    },
+    {
+      "id": 2,
+      "name": "双塔之间",
+      "chambers": [{ "id": "c1", "x": 0, "y": 0, "w": 420, "h": 100 }],
+      "elements": [
+        { "type": "platform", "x": 0, "y": 88, "w": 420, "h": 8 },
+        { "type": "platform", "x": 60, "y": 56, "w": 70, "h": 8 },
+        { "type": "platform", "x": 220, "y": 56, "w": 70, "h": 8 },
+        { "type": "flagPickup", "x": 92, "y": 48, "w": 10, "h": 8 },
+        { "type": "heart", "x": 250, "y": 48, "w": 10, "h": 8 },
+        { "type": "movable", "x": 180, "y": 80, "w": 12, "h": 8 },
+        { "type": "goal", "x": 400, "y": 80, "w": 10, "h": 8 }
+      ],
+      "initialLives": 3,
+      "initialFlags": 0,
+      "backgrounds": [],
+      "camera": { "deadZoneXLeft": 0.3, "deadZoneXRight": 0.7, "deadZoneYTop": 0.32, "deadZoneYBottom": 0.68, "viewW": 320, "viewH": 100 }
+    }
+  ]
+}
