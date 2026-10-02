@@ -2,55 +2,1975 @@
   "version": 11,
   "generator": "Die to Jump Editor v11.0",
   "feel": {
-    "maxWalkSpeed": 1.6,
-    "groundAccel": 0.7,
-    "airAccel": 0.55,
-    "stopFriction": 0.8,
-    "jumpMinHeight": 10,
-    "jumpMaxHeight": 34,
-    "jumpMaxHoldTime": 0.5,
-    "gravity": 0.42,
-    "maxFallSpeed": 7.5,
-    "coyoteTime": 0.1,
-    "jumpBufferTime": 0.12,
-    "edgeSnapDist": 6
+    "maxWalkSpeed": 1.85,
+    "groundAccel": 0.3,
+    "airAccel": 0.4,
+    "stopFriction": 0.79,
+    "jumpMinHeight": 4,
+    "jumpMaxHeight": 8,
+    "jumpMaxHoldTime": 0.4,
+    "gravity": 0.76,
+    "maxFallSpeed": 4,
+    "coyoteTime": 0.5,
+    "jumpBufferTime": 0.35,
+    "edgeSnapDist": 1
   },
   "levels": [
     {
       "id": 1,
-      "name": "初试身手",
-      "chambers": [{ "id": "c1", "x": 0, "y": 0, "w": 400, "h": 88 }],
-      "elements": [
-        { "type": "platform", "x": 0, "y": 76, "w": 400, "h": 8 },
-        { "type": "heart", "x": 60, "y": 68, "w": 10, "h": 8 },
-        { "type": "flagPickup", "x": 130, "y": 68, "w": 10, "h": 8 },
-        { "type": "spike", "x": 180, "y": 68, "w": 10, "h": 8 },
-        { "type": "platform", "x": 210, "y": 56, "w": 64, "h": 8 },
-        { "type": "gravityFlip", "x": 300, "y": 40, "w": 12, "h": 8 },
-        { "type": "goal", "x": 380, "y": 68, "w": 10, "h": 8 }
+      "name": "关卡 1",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        },
+        {
+          "id": "cy4jx",
+          "x": 200,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        },
+        {
+          "id": "cyb9d",
+          "x": 0,
+          "y": -88,
+          "w": 200,
+          "h": 88
+        },
+        {
+          "id": "cyd0m",
+          "x": 200,
+          "y": -88,
+          "w": 200,
+          "h": 88
+        },
+        {
+          "id": "cyfkt",
+          "x": 400,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        },
+        {
+          "id": "cyh1w",
+          "x": 400,
+          "y": -88,
+          "w": 200,
+          "h": 88
+        },
+        {
+          "id": "ceej7",
+          "x": 0,
+          "y": -176,
+          "w": 200,
+          "h": 88
+        },
+        {
+          "id": "cg179",
+          "x": 200,
+          "y": -176,
+          "w": 200,
+          "h": 88
+        },
+        {
+          "id": "cg2sl",
+          "x": 400,
+          "y": -176,
+          "w": 200,
+          "h": 88
+        },
+        {
+          "id": "cimtl",
+          "x": 600,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        },
+        {
+          "id": "cipk1",
+          "x": 600,
+          "y": -88,
+          "w": 200,
+          "h": 88
+        },
+        {
+          "id": "cohoh",
+          "x": 800,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        },
+        {
+          "id": "cokgv",
+          "x": 800,
+          "y": -88,
+          "w": 200,
+          "h": 88
+        },
+        {
+          "id": "cqrlp",
+          "x": 600,
+          "y": -176,
+          "w": 200,
+          "h": 88
+        },
+        {
+          "id": "cqu6z",
+          "x": 800,
+          "y": -176,
+          "w": 200,
+          "h": 88
+        }
       ],
+      "elements": [
+        {
+          "type": "platform",
+          "x": 0,
+          "y": 72,
+          "w": 176,
+          "h": 8
+        },
+        {
+          "type": "platform",
+          "x": 0,
+          "y": -176,
+          "w": 8,
+          "h": 248
+        },
+        {
+          "type": "spawn",
+          "x": 24,
+          "y": 48,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "label",
+          "x": 40,
+          "y": 64,
+          "w": 8,
+          "h": 8,
+          "text": "你醒在这满是荆棘的世界",
+          "fontSize": 6,
+          "color": "#ffffff",
+          "triggerRadius": 20,
+          "fadeSpeed": 1.5,
+          "textOffsetX": 15,
+          "textOffsetY": -39
+        },
+        {
+          "type": "platform",
+          "x": 56,
+          "y": -24,
+          "w": 64,
+          "h": 8
+        },
+        {
+          "type": "vine",
+          "x": 64,
+          "y": -16,
+          "w": 4,
+          "h": 80,
+          "color": "#88ddaa",
+          "segments": 8,
+          "_nodes": [
+            {
+              "x": 66,
+              "y": -16,
+              "px": 66,
+              "py": -16
+            },
+            {
+              "x": 66,
+              "y": -6,
+              "px": 66,
+              "py": -6
+            },
+            {
+              "x": 66,
+              "y": 4,
+              "px": 66,
+              "py": 4
+            },
+            {
+              "x": 66,
+              "y": 14,
+              "px": 66,
+              "py": 14
+            },
+            {
+              "x": 66,
+              "y": 24,
+              "px": 66,
+              "py": 24
+            },
+            {
+              "x": 66,
+              "y": 34,
+              "px": 66,
+              "py": 34
+            },
+            {
+              "x": 66,
+              "y": 44,
+              "px": 66,
+              "py": 44
+            },
+            {
+              "x": 66,
+              "y": 54,
+              "px": 66,
+              "py": 54
+            },
+            {
+              "x": 66,
+              "y": 64,
+              "px": 66,
+              "py": 64
+            }
+          ],
+          "_segLen": 10,
+          "_initX": 64,
+          "_initY": -16,
+          "_initH": 80,
+          "_initSegs": 8
+        },
+        {
+          "type": "vine",
+          "x": 72,
+          "y": -16,
+          "w": 4,
+          "h": 72,
+          "color": "#88ddaa",
+          "segments": 8,
+          "_nodes": [
+            {
+              "x": 74,
+              "y": -16,
+              "px": 74,
+              "py": -16
+            },
+            {
+              "x": 74,
+              "y": -7,
+              "px": 74,
+              "py": -7
+            },
+            {
+              "x": 74,
+              "y": 2,
+              "px": 74,
+              "py": 2
+            },
+            {
+              "x": 74,
+              "y": 11,
+              "px": 74,
+              "py": 11
+            },
+            {
+              "x": 74,
+              "y": 20,
+              "px": 74,
+              "py": 20
+            },
+            {
+              "x": 74,
+              "y": 29,
+              "px": 74,
+              "py": 29
+            },
+            {
+              "x": 74,
+              "y": 38,
+              "px": 74,
+              "py": 38
+            },
+            {
+              "x": 74,
+              "y": 47,
+              "px": 74,
+              "py": 47
+            },
+            {
+              "x": 74,
+              "y": 56,
+              "px": 74,
+              "py": 56
+            }
+          ],
+          "_segLen": 9,
+          "_initX": 72,
+          "_initY": -16,
+          "_initH": 72,
+          "_initSegs": 8
+        },
+        {
+          "type": "vine",
+          "x": 80,
+          "y": -16,
+          "w": 4,
+          "h": 64,
+          "color": "#88ddaa",
+          "segments": 8,
+          "_nodes": [
+            {
+              "x": 82,
+              "y": -16,
+              "px": 82,
+              "py": -16
+            },
+            {
+              "x": 82,
+              "y": -8,
+              "px": 82,
+              "py": -8
+            },
+            {
+              "x": 82,
+              "y": 0,
+              "px": 82,
+              "py": 0
+            },
+            {
+              "x": 82,
+              "y": 8,
+              "px": 82,
+              "py": 8
+            },
+            {
+              "x": 82,
+              "y": 16,
+              "px": 82,
+              "py": 16
+            },
+            {
+              "x": 82,
+              "y": 24,
+              "px": 82,
+              "py": 24
+            },
+            {
+              "x": 82,
+              "y": 32,
+              "px": 82,
+              "py": 32
+            },
+            {
+              "x": 82,
+              "y": 40,
+              "px": 82,
+              "py": 40
+            },
+            {
+              "x": 82,
+              "y": 48,
+              "px": 82,
+              "py": 48
+            }
+          ],
+          "_segLen": 8,
+          "_initX": 80,
+          "_initY": -16,
+          "_initH": 64,
+          "_initSegs": 8
+        },
+        {
+          "type": "vine",
+          "x": 88,
+          "y": -16,
+          "w": 4,
+          "h": 56,
+          "color": "#88ddaa",
+          "segments": 8,
+          "_nodes": [
+            {
+              "x": 90,
+              "y": -16,
+              "px": 90,
+              "py": -16
+            },
+            {
+              "x": 90,
+              "y": -9,
+              "px": 90,
+              "py": -9
+            },
+            {
+              "x": 90,
+              "y": -2,
+              "px": 90,
+              "py": -2
+            },
+            {
+              "x": 90,
+              "y": 5,
+              "px": 90,
+              "py": 5
+            },
+            {
+              "x": 90,
+              "y": 12,
+              "px": 90,
+              "py": 12
+            },
+            {
+              "x": 90,
+              "y": 19,
+              "px": 90,
+              "py": 19
+            },
+            {
+              "x": 90,
+              "y": 26,
+              "px": 90,
+              "py": 26
+            },
+            {
+              "x": 90,
+              "y": 33,
+              "px": 90,
+              "py": 33
+            },
+            {
+              "x": 90,
+              "y": 40,
+              "px": 90,
+              "py": 40
+            }
+          ],
+          "_segLen": 7,
+          "_initX": 88,
+          "_initY": -16,
+          "_initH": 56,
+          "_initSegs": 8
+        },
+        {
+          "type": "lamp",
+          "x": 160,
+          "y": 40,
+          "w": 8,
+          "h": 32
+        },
+        {
+          "type": "heart",
+          "x": 88,
+          "y": -32,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "platform",
+          "x": 216,
+          "y": 72,
+          "w": 80,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 192,
+          "y": 72,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 176,
+          "y": 72,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 184,
+          "y": 72,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "label",
+          "x": 152,
+          "y": 64,
+          "w": 8,
+          "h": 8,
+          "text": "必须飞跃过这些障碍",
+          "fontSize": 6,
+          "color": "#ffffff",
+          "triggerRadius": 20,
+          "fadeSpeed": 1.5,
+          "textOffsetX": 15,
+          "textOffsetY": -39
+        },
+        {
+          "type": "spike",
+          "x": 200,
+          "y": 72,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 208,
+          "y": 72,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 312,
+          "y": 72,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 296,
+          "y": 72,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 304,
+          "y": 72,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "label",
+          "x": 272,
+          "y": 64,
+          "w": 8,
+          "h": 8,
+          "text": "若你发力更持久，就会跳得更高远",
+          "fontSize": 6,
+          "color": "#ffffff",
+          "triggerRadius": 30,
+          "fadeSpeed": 1.5,
+          "textOffsetX": 15,
+          "textOffsetY": -39
+        },
+        {
+          "type": "spike",
+          "x": 320,
+          "y": 72,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 328,
+          "y": 72,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 336,
+          "y": 72,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 344,
+          "y": 72,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 352,
+          "y": 72,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 360,
+          "y": 72,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 368,
+          "y": 72,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 376,
+          "y": 72,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "platform",
+          "x": 344,
+          "y": 24,
+          "w": 112,
+          "h": 8
+        },
+        {
+          "type": "gravityFlip",
+          "x": 384,
+          "y": 32,
+          "w": 72,
+          "h": 48
+        },
+        {
+          "type": "platform",
+          "x": 456,
+          "y": 72,
+          "w": 104,
+          "h": 8
+        },
+        {
+          "type": "platform",
+          "x": 448,
+          "y": 80,
+          "w": 112,
+          "h": 8
+        },
+        {
+          "type": "heart",
+          "x": 384,
+          "y": 40,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "lamp",
+          "x": 504,
+          "y": 40,
+          "w": 16,
+          "h": 32
+        },
+        {
+          "type": "platform",
+          "x": 24,
+          "y": -128,
+          "w": 40,
+          "h": 8
+        },
+        {
+          "type": "label",
+          "x": 40,
+          "y": -136,
+          "w": 8,
+          "h": 8,
+          "text": "居然被你发现了",
+          "fontSize": 6,
+          "color": "#ffffff",
+          "triggerRadius": 12,
+          "fadeSpeed": 1.5,
+          "textOffsetX": 33,
+          "textOffsetY": -19
+        },
+        {
+          "type": "heart",
+          "x": 48,
+          "y": -136,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "platform",
+          "x": 8,
+          "y": -176,
+          "w": 864,
+          "h": 8
+        },
+        {
+          "type": "platform",
+          "x": 552,
+          "y": 8,
+          "w": 136,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 560,
+          "y": 80,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 568,
+          "y": 80,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 576,
+          "y": 80,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 584,
+          "y": 80,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 592,
+          "y": 80,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 600,
+          "y": 80,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 608,
+          "y": 80,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 616,
+          "y": 80,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 624,
+          "y": 80,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 632,
+          "y": 80,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 640,
+          "y": 80,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 648,
+          "y": 80,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 656,
+          "y": 80,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 664,
+          "y": 80,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 672,
+          "y": 80,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "spike",
+          "x": 680,
+          "y": 80,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "heart",
+          "x": 584,
+          "y": 0,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "label",
+          "x": 544,
+          "y": 64,
+          "w": 12,
+          "h": 12,
+          "text": "有时，又不得不将生命的希望托付给死亡",
+          "fontSize": 6,
+          "color": "#ffffff",
+          "triggerRadius": 16,
+          "fadeSpeed": 1.5,
+          "textOffsetX": 15,
+          "textOffsetY": -39
+        },
+        {
+          "type": "vine",
+          "x": 552,
+          "y": 16,
+          "w": 3,
+          "h": 40,
+          "color": "#88ddaa",
+          "segments": 8,
+          "_nodes": [
+            {
+              "x": 553.5,
+              "y": 16,
+              "px": 553.5,
+              "py": 16
+            },
+            {
+              "x": 553.5,
+              "y": 21,
+              "px": 553.5,
+              "py": 21
+            },
+            {
+              "x": 553.5,
+              "y": 26,
+              "px": 553.5,
+              "py": 26
+            },
+            {
+              "x": 553.5,
+              "y": 31,
+              "px": 553.5,
+              "py": 31
+            },
+            {
+              "x": 553.5,
+              "y": 36,
+              "px": 553.5,
+              "py": 36
+            },
+            {
+              "x": 553.5,
+              "y": 41,
+              "px": 553.5,
+              "py": 41
+            },
+            {
+              "x": 553.5,
+              "y": 46,
+              "px": 553.5,
+              "py": 46
+            },
+            {
+              "x": 553.5,
+              "y": 51,
+              "px": 553.5,
+              "py": 51
+            },
+            {
+              "x": 553.5,
+              "y": 56,
+              "px": 553.5,
+              "py": 56
+            }
+          ],
+          "_segLen": 5,
+          "_initX": 552,
+          "_initY": 16,
+          "_initH": 40,
+          "_initSegs": 8
+        },
+        {
+          "type": "vine",
+          "x": 560,
+          "y": 16,
+          "w": 3,
+          "h": 40,
+          "color": "#88ddaa",
+          "segments": 8,
+          "_nodes": [
+            {
+              "x": 561.5,
+              "y": 16,
+              "px": 561.5,
+              "py": 16
+            },
+            {
+              "x": 561.5,
+              "y": 21,
+              "px": 561.5,
+              "py": 21
+            },
+            {
+              "x": 561.5,
+              "y": 26,
+              "px": 561.5,
+              "py": 26
+            },
+            {
+              "x": 561.5,
+              "y": 31,
+              "px": 561.5,
+              "py": 31
+            },
+            {
+              "x": 561.5,
+              "y": 36,
+              "px": 561.5,
+              "py": 36
+            },
+            {
+              "x": 561.5,
+              "y": 41,
+              "px": 561.5,
+              "py": 41
+            },
+            {
+              "x": 561.5,
+              "y": 46,
+              "px": 561.5,
+              "py": 46
+            },
+            {
+              "x": 561.5,
+              "y": 51,
+              "px": 561.5,
+              "py": 51
+            },
+            {
+              "x": 561.5,
+              "y": 56,
+              "px": 561.5,
+              "py": 56
+            }
+          ],
+          "_segLen": 5,
+          "_initX": 560,
+          "_initY": 16,
+          "_initH": 40,
+          "_initSegs": 8
+        },
+        {
+          "type": "vine",
+          "x": 568,
+          "y": 16,
+          "w": 3,
+          "h": 40,
+          "color": "#88ddaa",
+          "segments": 8,
+          "_nodes": [
+            {
+              "x": 569.5,
+              "y": 16,
+              "px": 569.5,
+              "py": 16
+            },
+            {
+              "x": 569.5,
+              "y": 21,
+              "px": 569.5,
+              "py": 21
+            },
+            {
+              "x": 569.5,
+              "y": 26,
+              "px": 569.5,
+              "py": 26
+            },
+            {
+              "x": 569.5,
+              "y": 31,
+              "px": 569.5,
+              "py": 31
+            },
+            {
+              "x": 569.5,
+              "y": 36,
+              "px": 569.5,
+              "py": 36
+            },
+            {
+              "x": 569.5,
+              "y": 41,
+              "px": 569.5,
+              "py": 41
+            },
+            {
+              "x": 569.5,
+              "y": 46,
+              "px": 569.5,
+              "py": 46
+            },
+            {
+              "x": 569.5,
+              "y": 51,
+              "px": 569.5,
+              "py": 51
+            },
+            {
+              "x": 569.5,
+              "y": 56,
+              "px": 569.5,
+              "py": 56
+            }
+          ],
+          "_segLen": 5,
+          "_initX": 568,
+          "_initY": 16,
+          "_initH": 40,
+          "_initSegs": 8
+        },
+        {
+          "type": "vine",
+          "x": 576,
+          "y": 16,
+          "w": 3,
+          "h": 40,
+          "color": "#88ddaa",
+          "segments": 8,
+          "_nodes": [
+            {
+              "x": 577.5,
+              "y": 16,
+              "px": 577.5,
+              "py": 16
+            },
+            {
+              "x": 577.5,
+              "y": 21,
+              "px": 577.5,
+              "py": 21
+            },
+            {
+              "x": 577.5,
+              "y": 26,
+              "px": 577.5,
+              "py": 26
+            },
+            {
+              "x": 577.5,
+              "y": 31,
+              "px": 577.5,
+              "py": 31
+            },
+            {
+              "x": 577.5,
+              "y": 36,
+              "px": 577.5,
+              "py": 36
+            },
+            {
+              "x": 577.5,
+              "y": 41,
+              "px": 577.5,
+              "py": 41
+            },
+            {
+              "x": 577.5,
+              "y": 46,
+              "px": 577.5,
+              "py": 46
+            },
+            {
+              "x": 577.5,
+              "y": 51,
+              "px": 577.5,
+              "py": 51
+            },
+            {
+              "x": 577.5,
+              "y": 56,
+              "px": 577.5,
+              "py": 56
+            }
+          ],
+          "_segLen": 5,
+          "_initX": 576,
+          "_initY": 16,
+          "_initH": 40,
+          "_initSegs": 8
+        },
+        {
+          "type": "vine",
+          "x": 584,
+          "y": 16,
+          "w": 3,
+          "h": 40,
+          "color": "#88ddaa",
+          "segments": 8,
+          "_nodes": [
+            {
+              "x": 585.5,
+              "y": 16,
+              "px": 585.5,
+              "py": 16
+            },
+            {
+              "x": 585.5,
+              "y": 21,
+              "px": 585.5,
+              "py": 21
+            },
+            {
+              "x": 585.5,
+              "y": 26,
+              "px": 585.5,
+              "py": 26
+            },
+            {
+              "x": 585.5,
+              "y": 31,
+              "px": 585.5,
+              "py": 31
+            },
+            {
+              "x": 585.5,
+              "y": 36,
+              "px": 585.5,
+              "py": 36
+            },
+            {
+              "x": 585.5,
+              "y": 41,
+              "px": 585.5,
+              "py": 41
+            },
+            {
+              "x": 585.5,
+              "y": 46,
+              "px": 585.5,
+              "py": 46
+            },
+            {
+              "x": 585.5,
+              "y": 51,
+              "px": 585.5,
+              "py": 51
+            },
+            {
+              "x": 585.5,
+              "y": 56,
+              "px": 585.5,
+              "py": 56
+            }
+          ],
+          "_segLen": 5,
+          "_initX": 584,
+          "_initY": 16,
+          "_initH": 40,
+          "_initSegs": 8
+        },
+        {
+          "type": "platform",
+          "x": 688,
+          "y": 80,
+          "w": 184,
+          "h": 8
+        },
+        {
+          "type": "door",
+          "x": 808,
+          "y": 32,
+          "w": 8,
+          "h": 48,
+          "id": "1"
+        },
+        {
+          "type": "platform",
+          "x": 808,
+          "y": 24,
+          "w": 64,
+          "h": 8
+        },
+        {
+          "type": "platform",
+          "x": 864,
+          "y": -168,
+          "w": 8,
+          "h": 248
+        },
+        {
+          "type": "goal",
+          "x": 840,
+          "y": 64,
+          "w": 8,
+          "h": 8
+        },
+        {
+          "type": "plate",
+          "x": 696,
+          "y": 80,
+          "w": 32,
+          "h": 4,
+          "need": 1,
+          "targetId": "1"
+        },
+        {
+          "type": "movable",
+          "x": 744,
+          "y": 72,
+          "w": 8,
+          "h": 8
+        }
+      ],
+      "backgrounds": [
+        {
+          "id": "bg_rst0t",
+          "layer": 1,
+          "chambers": [
+            {
+              "id": "bc_st0t",
+              "x": 0,
+              "y": -176,
+              "w": 872,
+              "h": 264
+            }
+          ],
+          "shapes": [
+            {
+              "type": "bgShape",
+              "chamberId": "bc_st0t",
+              "x": 80,
+              "y": -56,
+              "w": 96,
+              "h": 88,
+              "shape": "star",
+              "shader": "aurora",
+              "color": "#d408b8",
+              "color2": "#0a0e1a",
+              "glow": 0,
+              "alpha": 1,
+              "rotation": 0,
+              "points": 5
+            },
+            {
+              "type": "bgShape",
+              "chamberId": "bc_st0t",
+              "x": 216,
+              "y": -8,
+              "w": 56,
+              "h": 48,
+              "shape": "star",
+              "shader": "aurora",
+              "color": "#dc09a4",
+              "color2": "#0a0e1a",
+              "glow": 0,
+              "alpha": 1,
+              "rotation": 0,
+              "points": 5
+            },
+            {
+              "type": "bgShape",
+              "chamberId": "bc_st0t",
+              "x": 528,
+              "y": -128,
+              "w": 256,
+              "h": 200,
+              "shape": "star",
+              "shader": "aurora",
+              "color": "#dc09a4",
+              "color2": "#0a0e1a",
+              "glow": 0,
+              "alpha": 1,
+              "rotation": 0,
+              "points": 5
+            },
+            {
+              "type": "bgShape",
+              "chamberId": "bc_st0t",
+              "x": 360,
+              "y": -72,
+              "w": 136,
+              "h": 104,
+              "shape": "star",
+              "shader": "aurora",
+              "color": "#dc09a4",
+              "color2": "#0a0e1a",
+              "glow": 0,
+              "alpha": 1,
+              "rotation": 0,
+              "points": 5
+            }
+          ]
+        },
+        {
+          "id": "bg_rveex",
+          "layer": 2,
+          "chambers": [
+            {
+              "id": "bc_veex",
+              "x": 0,
+              "y": -184,
+              "w": 864,
+              "h": 272
+            }
+          ],
+          "shapes": [
+            {
+              "type": "bgShape",
+              "chamberId": "bc_veex",
+              "x": 112,
+              "y": -8,
+              "w": 40,
+              "h": 40,
+              "shape": "star",
+              "shader": "scanline",
+              "color": "#09bfec",
+              "color2": "#0a0e1a",
+              "glow": 0.4,
+              "alpha": 0.85,
+              "rotation": 0,
+              "points": 5
+            },
+            {
+              "type": "bgShape",
+              "chamberId": "bc_veex",
+              "x": 176,
+              "y": -24,
+              "w": 56,
+              "h": 56,
+              "shape": "star",
+              "shader": "scanline",
+              "color": "#09bfec",
+              "color2": "#0a0e1a",
+              "glow": 0.4,
+              "alpha": 0.85,
+              "rotation": 0,
+              "points": 5
+            },
+            {
+              "type": "bgShape",
+              "chamberId": "bc_veex",
+              "x": 264,
+              "y": 24,
+              "w": 24,
+              "h": 24,
+              "shape": "star",
+              "shader": "scanline",
+              "color": "#09bfec",
+              "color2": "#0a0e1a",
+              "glow": 0.4,
+              "alpha": 0.85,
+              "rotation": 0,
+              "points": 5
+            },
+            {
+              "type": "bgShape",
+              "chamberId": "bc_veex",
+              "x": 304,
+              "y": -48,
+              "w": 96,
+              "h": 80,
+              "shape": "star",
+              "shader": "scanline",
+              "color": "#09bfec",
+              "color2": "#0a0e1a",
+              "glow": 0.4,
+              "alpha": 0.25,
+              "rotation": 0,
+              "points": 5
+            },
+            {
+              "type": "bgShape",
+              "chamberId": "bc_veex",
+              "x": 488,
+              "y": -56,
+              "w": 64,
+              "h": 96,
+              "shape": "star",
+              "shader": "scanline",
+              "color": "#09bfec",
+              "color2": "#0a0e1a",
+              "glow": 0.4,
+              "alpha": 0.85,
+              "rotation": 0,
+              "points": 5
+            },
+            {
+              "type": "bgShape",
+              "chamberId": "bc_veex",
+              "x": 640,
+              "y": -16,
+              "w": 40,
+              "h": 40,
+              "shape": "star",
+              "shader": "scanline",
+              "color": "#09bfec",
+              "color2": "#0a0e1a",
+              "glow": 0.4,
+              "alpha": 0.85,
+              "rotation": 0,
+              "points": 5
+            }
+          ]
+        },
+        {
+          "id": "bg_rzp3a",
+          "layer": 3,
+          "chambers": [
+            {
+              "id": "bc_zp3a",
+              "x": 0,
+              "y": -176,
+              "w": 872,
+              "h": 272
+            }
+          ],
+          "shapes": [
+            {
+              "type": "bgShape",
+              "chamberId": "bc_zp3a",
+              "x": 0,
+              "y": -176,
+              "w": 872,
+              "h": 272,
+              "shape": "rect",
+              "shader": "rings",
+              "color": "#331166",
+              "color2": "#0a0e1a",
+              "glow": 0.4,
+              "alpha": 0.35,
+              "rotation": 0,
+              "points": 6
+            }
+          ]
+        }
+      ],
+      "feel": {
+        "maxWalkSpeed": 1.85,
+        "groundAccel": 0.3,
+        "airAccel": 0.4,
+        "stopFriction": 0.79,
+        "jumpMinHeight": 4,
+        "jumpMaxHeight": 8,
+        "jumpMaxHoldTime": 0.4,
+        "gravity": 0.76,
+        "maxFallSpeed": 4,
+        "coyoteTime": 0.5,
+        "jumpBufferTime": 0.35,
+        "edgeSnapDist": 1
+      },
       "initialLives": 3,
       "initialFlags": 0,
-      "backgrounds": [],
-      "camera": { "deadZoneXLeft": 0.3, "deadZoneXRight": 0.7, "deadZoneYTop": 0.32, "deadZoneYBottom": 0.68, "viewW": 300, "viewH": 88 }
+      "camera": {
+        "deadZoneXLeft": 0.3,
+        "deadZoneXRight": 0.7,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 300,
+        "viewH": 160
+      }
     },
     {
       "id": 2,
-      "name": "双塔之间",
-      "chambers": [{ "id": "c1", "x": 0, "y": 0, "w": 420, "h": 100 }],
-      "elements": [
-        { "type": "platform", "x": 0, "y": 88, "w": 420, "h": 8 },
-        { "type": "platform", "x": 60, "y": 56, "w": 70, "h": 8 },
-        { "type": "platform", "x": 220, "y": 56, "w": 70, "h": 8 },
-        { "type": "flagPickup", "x": 92, "y": 48, "w": 10, "h": 8 },
-        { "type": "heart", "x": 250, "y": 48, "w": 10, "h": 8 },
-        { "type": "movable", "x": 180, "y": 80, "w": 12, "h": 8 },
-        { "type": "goal", "x": 400, "y": 80, "w": 10, "h": 8 }
+      "name": "关卡 2",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
       ],
+      "elements": [],
+      "backgrounds": [],
+      "feel": null,
       "initialLives": 3,
       "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
+    },
+    {
+      "id": 3,
+      "name": "关卡 3",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
+      ],
+      "elements": [],
       "backgrounds": [],
-      "camera": { "deadZoneXLeft": 0.3, "deadZoneXRight": 0.7, "deadZoneYTop": 0.32, "deadZoneYBottom": 0.68, "viewW": 320, "viewH": 100 }
+      "feel": null,
+      "initialLives": 3,
+      "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
+    },
+    {
+      "id": 4,
+      "name": "关卡 4",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
+      ],
+      "elements": [],
+      "backgrounds": [],
+      "feel": null,
+      "initialLives": 3,
+      "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
+    },
+    {
+      "id": 5,
+      "name": "关卡 5",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
+      ],
+      "elements": [],
+      "backgrounds": [],
+      "feel": null,
+      "initialLives": 3,
+      "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
+    },
+    {
+      "id": 6,
+      "name": "关卡 6",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
+      ],
+      "elements": [],
+      "backgrounds": [],
+      "feel": null,
+      "initialLives": 3,
+      "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
+    },
+    {
+      "id": 7,
+      "name": "关卡 7",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
+      ],
+      "elements": [],
+      "backgrounds": [],
+      "feel": null,
+      "initialLives": 3,
+      "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
+    },
+    {
+      "id": 8,
+      "name": "关卡 8",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
+      ],
+      "elements": [],
+      "backgrounds": [],
+      "feel": null,
+      "initialLives": 3,
+      "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
+    },
+    {
+      "id": 9,
+      "name": "关卡 9",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
+      ],
+      "elements": [],
+      "backgrounds": [],
+      "feel": null,
+      "initialLives": 3,
+      "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
+    },
+    {
+      "id": 10,
+      "name": "关卡 10",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
+      ],
+      "elements": [],
+      "backgrounds": [],
+      "feel": null,
+      "initialLives": 3,
+      "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
+    },
+    {
+      "id": 11,
+      "name": "关卡 11",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
+      ],
+      "elements": [],
+      "backgrounds": [],
+      "feel": null,
+      "initialLives": 3,
+      "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
+    },
+    {
+      "id": 12,
+      "name": "关卡 12",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
+      ],
+      "elements": [],
+      "backgrounds": [],
+      "feel": null,
+      "initialLives": 3,
+      "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
+    },
+    {
+      "id": 13,
+      "name": "关卡 13",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
+      ],
+      "elements": [],
+      "backgrounds": [],
+      "feel": null,
+      "initialLives": 3,
+      "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
+    },
+    {
+      "id": 14,
+      "name": "关卡 14",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
+      ],
+      "elements": [],
+      "backgrounds": [],
+      "feel": null,
+      "initialLives": 3,
+      "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
+    },
+    {
+      "id": 15,
+      "name": "关卡 15",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
+      ],
+      "elements": [],
+      "backgrounds": [],
+      "feel": null,
+      "initialLives": 3,
+      "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
+    },
+    {
+      "id": 16,
+      "name": "关卡 16",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
+      ],
+      "elements": [],
+      "backgrounds": [],
+      "feel": null,
+      "initialLives": 3,
+      "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
+    },
+    {
+      "id": 17,
+      "name": "关卡 17",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
+      ],
+      "elements": [],
+      "backgrounds": [],
+      "feel": null,
+      "initialLives": 3,
+      "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
+    },
+    {
+      "id": 18,
+      "name": "关卡 18",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
+      ],
+      "elements": [],
+      "backgrounds": [],
+      "feel": null,
+      "initialLives": 3,
+      "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
+    },
+    {
+      "id": 19,
+      "name": "关卡 19",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
+      ],
+      "elements": [],
+      "backgrounds": [],
+      "feel": null,
+      "initialLives": 3,
+      "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
+    },
+    {
+      "id": 20,
+      "name": "关卡 20",
+      "chambers": [
+        {
+          "id": "c1",
+          "x": 0,
+          "y": 0,
+          "w": 200,
+          "h": 88
+        }
+      ],
+      "elements": [],
+      "backgrounds": [],
+      "feel": null,
+      "initialLives": 3,
+      "initialFlags": 0,
+      "camera": {
+        "deadZoneXLeft": 0.4,
+        "deadZoneXRight": 0.6,
+        "deadZoneYTop": 0.32,
+        "deadZoneYBottom": 0.68,
+        "viewW": 200,
+        "viewH": 160
+      }
     }
   ]
 }
