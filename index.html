@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>拼死跳跃 · Die to Jump</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#05070b;font-family:monospace}
+canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelated;display:block}
+#playScreen{position:absolute;inset:0;display:none}
+#playScreen.active{display:block}
+#playCanvasWrap{position:absolute;inset:0}
+#ui{z-index:2}
+#accessibility{position:absolute;inset:0;z-index:3;pointer-events:none}
+#accessibility button{position:absolute;pointer-events:auto;opacity:0;cursor:pointer;border:0;margin:0;padding:0}
+#accessibility button:focus-visible{opacity:.16;outline:3px solid #f0b73e;background:#1a1710}
+#legacy{display:none}
+</style>
+</head>
+<body>
+<div id="playScreen"><div id="playCanvasWrap"><canvas id="playCanvas"></canvas></div></div>
+<canvas id="ui" aria-label="拼死跳跃游戏画面"></canvas>
+<div id="accessibility"></div>
+<div id="legacy"><div id="playInfo"></div><div id="playWin"></div><div id="playControls"></div><div id="playFreeLookHint"></div></div>
+<script src="levels.js"></script>
+<script src="audio.js"></script>
+<script src="fx.js"></script>
+<script src="runtime.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
