@@ -27,5 +27,15 @@ canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelate
 <script src="fx.js"></script>
 <script src="runtime.js"></script>
 <script src="game.js"></script>
+<script>
+/* 启动预热：趁加载完成的空闲时间先把「菜单/暂停」两条 BGM 合成好。
+   合成只是 CPU 运算、不需要 AudioContext 处于 running，所以能赶在
+   玩家按下按键之前完成 → 进主菜单时音乐几乎瞬间响起，消除等待。 */
+(function(){
+  function go(){ try{ if(window.AudioSystem&&AudioSystem.bootWarm) AudioSystem.bootWarm(); }catch(e){} }
+  if(document.readyState==='complete') go();
+  else window.addEventListener('load',function(){ setTimeout(go,0); });
+})();
+</script>
 </body>
 </html>

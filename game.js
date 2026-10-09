@@ -269,17 +269,31 @@ function renderSubtitle(cx,cy,k){const label='D I E   T O   J U M P';
 
 /* ------------------------------------------------------------- 启动 / 主菜单 */
 let bootArmed=false;
-async function startGame(){if(Game.state!=='boot'||bootArmed)return;bootArmed=true;await AudioSystem.init();AudioSystem.setVolumes(Game.save.music,Game.save.sfx);change('menu',{noFx:true});
+async function startGame(){if(Game.state!=='boot'||bootArmed)return;bootArmed=true;
+  /* 菜单 BGM 与音频解锁**并行**等待：启动预热通常已把 menu 轨算好（缓存命中立即返回）；
+     万一没赶上，就等它算完再切页面，避免“进了主菜单但音乐要等一阵才响”。
+     用 Promise.race 限制上限，极端情况也不至于卡住开始流程。 */
+  const warmMenu=Promise.resolve().then(()=>{
+    if(AudioSystem&&AudioSystem.ensureTrack)return AudioSystem.ensureTrack('menu',null);
+  }).catch(()=>{});
+  await Promise.all([AudioSystem.init(),Promise.race([warmMenu,new Promise(r=>setTimeout(r,1500))])]);
+  AudioSystem.setVolumes(Game.save.music,Game.save.sfx);change('menu',{noFx:true});
   /* 后台空闲预热全部关卡 BGM：之后进任何关卡都是零延迟、音乐立刻正确 */
   try{if(AudioSystem.prewarm)AudioSystem.prewarm(Game.levels.map(r=>r.lv));}catch(e){}}
 /* 起始页：只有跳动的提示文字，不摆放任何按钮 */
-function boot(){titleBlock(W/2,H*.34,1.22);
-  /* 标语与提示同用描边样式，保证在明亮天空上清晰可读 */
-  styledText('每一次陨落，都是下一次起跳的回响',W/2,H*.53,1.15,['#ffffff','#fff3cf','#f4c96a','#b8811c'],1.6,0.25);
-  const bob=Math.sin(clock*2.8)*7,pulse=.45+.55*(.5+.5*Math.sin(clock*3.2)),py=H*.70+bob;
-  g.save();g.globalAlpha=pulse;text('▶',W/2-192,py,C.goldDeep,1.4);text('◀',W/2+192,py,C.goldDeep,1.4);g.restore();
-  styledText('点击任意键开始',W/2,py,1.5,['#ffffff','#fff2b0','#f0b73e','#a9770f'],2.4,0.25);
-  styledText('键盘 / 鼠标 / 触屏 均可开始',W/2,H*.84,1.0,['#ffffff','#fdf3d8','#e8c98a','#a8813a'],1.4,0.25);}
+function boot(){
+  /* 简约独立游戏启动页：居中 logo + 一行标语 + 呼吸提示，其余一律留白。
+     移除了旧版的左右箭头、双行提示与副标题短线，观感更接近独立游戏开场。 */
+  const cy=H*.40;
+  styledText('拼 死 跳 跃',W/2,cy-H*.030,2.30,['#ffffff','#ffe98a','#e8a92c','#96630e'],3.6,0.25);
+  styledText('D I E   T O   J U M P',W/2,cy+H*.048,1.06,['#ffffff','#fff3cf','#f4c96a','#b8811c'],1.9,0.25);
+  rect(W/2-Math.round(W*.15),cy+H*.086,Math.round(W*.30),1,'rgba(255,255,255,.34)');
+  styledText('每一次陨落，都是下一次起跳的回响',W/2,cy+H*.124,.98,['#ffffff','#fff3cf','#f4c96a','#b8811c'],1.5,0.25);
+  const pulse=.30+.70*(.5+.5*Math.sin(clock*2.4));
+  g.save();g.globalAlpha=pulse;
+  styledText('按 任 意 键 开 始',W/2,H*.82,1.30,['#ffffff','#fff2b0','#f0b73e','#a9770f'],2.2,0.25);
+  g.restore();
+  g.save();g.globalAlpha=.42;textRight('v1.0 · 独立游戏版',W-18,H-16,C.skyInkDim,.75);g.restore();}
 function menu(){titleBlock(W/2,H*.21,1.0);
   const items=[['chooseLevels','选择关卡','flag',()=>change('levels'),true],
     ['settings','设置','gear',()=>change('settings'),false],
@@ -352,7 +366,17 @@ function hud(){
   for(let i=0;i<Play.flagsCollected;i++)flagIcon(32+i*26,H-58,1.9);
   if(!Play.flagsCollected)text('无旗',64,H-44,C.inkFaint,.95);
   const bx=170+Play.flagsCollected*26;
-  if(Play.energy<.999){rect(bx-4,H-46,96,10,C.line);rect(bx-2,H-44,92,6,'#fdf8e6');rect(bx-2,H-44,92*Play.energy,6,C.teal);rect(bx-2,H-44,92*Play.energy,2,C.tealHi);text('慢放',bx+44,H-56,C.skyInk,.78);}
+  /* 慢放条：平时隐藏（满能量），一旦消耗过就常显。
+     触底回涨期间为黄色，回满后黄色缓慢渐变为原本的绿色（slowWarn 1→0）。 */
+  if(Play.energy<.999||Play.slowWarn>.01){
+    const w=Math.max(0,Math.min(1,Play.slowWarn||0));
+    const mix=(a,b)=>Math.round(a+(b-a)*w);
+    const fill=`rgb(${mix(47,232)},${mix(158,176)},${mix(143,38)})`;      /* teal → amber */
+    const hi=`rgb(${mix(102,255)},${mix(201,226)},${mix(184,122)})`;
+    rect(bx-4,H-46,96,10,C.line);rect(bx-2,H-44,92,6,'#fdf8e6');
+    if(Play.energy>0.004){rect(bx-2,H-44,92*Play.energy,6,fill);rect(bx-2,H-44,92*Play.energy,2,hi);}
+    if(Play.slowLocked)text('回能中',bx+44,H-56,'#ffe08a',.78);else text('慢放',bx+44,H-56,C.skyInk,.78);
+  }
   if(Play._inWater){panel(W/2-86,H-58,172,32,{tone:'teal'});text('呼吸 '+Play.waterBubbleTimer.toFixed(1)+' 秒',W/2,H-42,C.ink,1.0);}
   text(Game.levels[Game.selected]?.lv.name||'',W-94,H-46,C.skyInk,.88);}
 function result(win){const pw=540,ph=326,x=(W-pw)/2,y=(H-ph)/2;panel(x,y,pw,ph);
@@ -414,6 +438,7 @@ function simulation(){if(Game.state!=='playing')return;Game.elapsed+=1/60;Game.s
   a.doors.forEach((v,i)=>{if(v!==b.doors[i])sound(v?'doorOpen':'doorClose');});a.plates.forEach((v,i)=>{if(v&&!b.plates[i])sound('plate');});a.switches.forEach((v,i)=>{if(v&&!b.switches[i])sound('switch');});a.burns.forEach((v,i)=>{if(v&&!b.burns[i])sound('ignite');});a.falls.forEach((v,i)=>{if(v&&!b.falls[i])sound('fallingSpike');});
   if(a.water&&Math.floor(Game.simTime*1.2)!==Math.floor((Game.simTime-1/60)*1.2))sound('bubble');if(Play.won)victory();}
 function frame(now){const dt=Math.min(.12,(now-last)/1000);last=now;clock+=dt;Game.transition=Math.max(0,Game.transition-dt*4);
+  if(window.MU&&MU.updateTilt)MU.updateTilt(dt);
   if(Game.state==='playing'){acc+=dt;let guard=0;while(acc>=1/60&&guard++<8){simulation();acc-=1/60;}renderPlay();}
   else if(['pause','win','fail'].includes(Game.state))renderPlay();else acc=0;renderUI();requestAnimationFrame(frame);}
 function point(e){pointer.x=e.clientX/scale;pointer.y=e.clientY/scale;}
@@ -422,7 +447,7 @@ window.addEventListener('pointerdown',e=>{point(e);
   /* 记录本次输入的指针类型：只有触摸/手写笔才会遭受“抬起时界面已换掉”的穿透，
      所以闸门仅对它们生效（鼠标/键盘玩家的点击立即响应，不受影响）。 */
   armGate(e.pointerType);
-  pointer.down=true;if(Game.state==='boot'){startGame();return;}const b=buttons.find(v=>inRect(pointer,v));if(b&&b.slider){dragSlider=b.id;e.preventDefault();}});
+  pointer.down=true;if(Game.state==='boot'){if(window.MU&&MU.enableGyro)MU.enableGyro();startGame();return;}const b=buttons.find(v=>inRect(pointer,v));if(b&&b.slider){dragSlider=b.id;e.preventDefault();}});
 window.addEventListener('pointerup',()=>{pointer.down=false;dragSlider=null;});
 window.addEventListener('keydown',e=>{const code=e.code;if(['Space','ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Escape'].includes(code))e.preventDefault();
   if(Game.state==='boot'){if(!e.repeat&&!['ShiftLeft','ShiftRight','ControlLeft','ControlRight','AltLeft','AltRight','MetaLeft','MetaRight'].includes(code))startGame();return;}
@@ -449,13 +474,61 @@ function normalize(data){const source=Array.isArray(data)?data:(data&&Array.isAr
     lv.feel=sanitizeFeel(lv.feel||(data&&data.feel));lv.camera=lv.camera||{};
     lv.initialLives=Math.max(1,Math.floor(lv.initialLives||3));lv.initialFlags=Math.max(0,Math.floor(lv.initialFlags||0));
     const order=(()=>{const m=String(lv.id).match(/(\d+)/);return m?Number(m[1]):i+1;})();
-    out.push({lv,key:'lv'+order+'#'+i,order,preview:preview(lv)});});
-  out.sort((a,b)=>a.order-b.order);return out;}
+    out.push({lv,key:'lv'+order+'#'+i,order,preview:null});});
+  out.sort((a,b)=>a.order-b.order);
+  /* === 缩略图惰性化（启动性能关键修复） ===
+     旧版在 normalize() 里对每关**同步**渲染 340x150 缩略图：20 关 × 约 250ms
+     → 阻塞主线程 5~90 秒（视机型），这正是"关卡文件一大就加载不出来"的根因。
+     而 preview 只在**绘制选关页**时才被读（game.js / mobile-ui.js 各一处），
+     因此改为按需计算 + 缓存：启动时一次都不算，进入选关页只算当前可见的几张。
+     其余关卡用浏览器空闲时间后台预热，翻页时基本已就绪。 */
+  out.forEach(r=>{
+    let _pv;
+    Object.defineProperty(r,'preview',{
+      configurable:true,enumerable:true,
+      get(){if(_pv===undefined)_pv=preview(r.lv);return _pv;},
+      set(v){_pv=v;}
+    });
+  });
+  schedulePreviewPrewarm(out);
+  return out;}
+/* 空闲预热：一次算一关，绝不与交互抢主线程。
+   刻意**跳过局内状态**（playing/pause/win/fail）：缩略图只在选关页用得到，
+   若在玩家操作时抢主线程算它会掉帧。等回到菜单/选关页再继续预热。 */
+function schedulePreviewPrewarm(recs){
+  if(!recs||!recs.length)return;
+  let i=0;
+  const busy=()=>{
+    const s=Game&&Game.state;
+    return s==='playing'||s==='pause'||s==='win'||s==='fail';
+  };
+  const step=()=>{
+    if(i>=recs.length)return;
+    if(busy()){scheduleNext();return;}      /* 局内 → 让路，稍后再试 */
+    try{void recs[i++].preview;}catch(e){}
+    scheduleNext();
+  };
+  const scheduleNext=()=>{
+    if(window.requestIdleCallback)requestIdleCallback(step,{timeout:2000});
+    else setTimeout(step,120);
+  };
+  const kick=()=>scheduleNext();
+  if(document.readyState==='complete')setTimeout(kick,1200);
+  else window.addEventListener('load',()=>setTimeout(kick,1200),{once:true});
+}
 function preview(lv){const c=document.createElement('canvas');c.width=340;c.height=150;const q=c.getContext('2d');q.imageSmoothingEnabled=false;
   const b=(lv.chambers||[]).reduce((b,ch)=>({x:Math.min(b.x,ch.x),y:Math.min(b.y,ch.y),r:Math.max(b.r,ch.x+ch.w),d:Math.max(b.d,ch.y+ch.h)}),{x:Infinity,y:Infinity,r:-Infinity,d:-Infinity});
   const bx=isFinite(b.x)?b:{x:0,y:0,r:200,d:88};const z=Math.min(340/(bx.r-bx.x),150/(bx.d-bx.y));
   q.fillStyle='#0c1520';q.fillRect(0,0,340,150);q.save();q.translate((340-(bx.r-bx.x)*z)/2,(150-(bx.d-bx.y)*z)/2);q.scale(z,z);q.translate(-bx.x,-bx.y);
-  for(const bg of lv.backgrounds.slice().sort((a,b2)=>(a.layer||0)-(b2.layer||0)))for(const s of bg.shapes||[])try{drawBgShape(q,s,s.x,s.y,s.w,s.h,s.alpha==null?.8:s.alpha,0,false,true,[],z);}catch(e){}
+  /* 缩略图只有 340x150（实际显示约 226x128），因此背景走「临时渲染通道」：
+     共享一块小画布、按 z（真实缩放 0.17~0.34）× 2 倍过采样降采样、
+     每格最多覆盖 2.5 画布像素、不写持久缓存。
+     此前直接走正常路径：每个形状都按真实尺寸（最大 3150x1432）独立占一块
+     离屏画布且永不释放 → 启动被阻塞近 90 秒、4K 下直接崩渲染进程。 */
+  if(typeof _bgEphBegin==='function')_bgEphBegin(1024,40000,z,2,2.5);
+  try{
+    for(const bg of lv.backgrounds.slice().sort((a,b2)=>(a.layer||0)-(b2.layer||0)))for(const s of bg.shapes||[])try{drawBgShape(q,s,s.x,s.y,s.w,s.h,s.alpha==null?.8:s.alpha,0,false,true,[],z);}catch(e){}
+  }finally{if(typeof _bgEphEnd==='function')_bgEphEnd();}
   for(const e of lv.elements){const a=getAdjacency(e,lv.elements);switch(e.type){case'platform':drawPlatformTo(q,e,a);break;case'ice':drawIceTo(q,e,a);break;case'movable':drawMovableTo(q,e,a);break;case'breakable':drawBreakableTo(q,e,a);break;case'flammable':drawFlammableTo(q,e,a);break;case'water':drawWaterTo(q,e,false);break;case'goal':drawGoalPortalShader(q,e,0);break;case'trophy':drawTrophyTo(q,e);break;case'switchDoor':drawSwitchDoorTo(q,e,false);break;case'switch':drawSwitchTo(q,e,false);break;case'gravityFlip':drawGravityZoneShader(q,e,0);break;case'door':q.fillStyle='#c19748';q.fillRect(e.x,e.y,e.w,e.h);break;case'spike':case'fallingSpike':q.fillStyle='#cf4e65';q.beginPath();q.moveTo(e.x,e.y+e.h);q.lineTo(e.x+e.w/2,e.y);q.lineTo(e.x+e.w,e.y+e.h);q.fill();break;case'spawn':q.fillStyle='#6affa9';q.fillRect(e.x,e.y-8,8,8);break;case'flagPickup':q.fillStyle='#edce61';q.fillRect(e.x,e.y,6,4);break;case'heart':q.fillStyle='#e46376';q.fillRect(e.x,e.y,7,6);break;case'laserRight':case'laserLeft':case'laserUp':case'laserDown':q.fillStyle='#ff4d6a';q.fillRect(e.x,e.y,7,7);break;case'disappear':q.fillStyle='rgba(190,170,255,.75)';q.fillRect(e.x,e.y,Math.max(6,e.w),Math.max(4,e.h));break;}}
   q.restore();return c;}
 function loadLevels(){Game.levels=normalize(window.LEVELS_DATA);Game.page=Math.min(Game.page,Math.max(0,Math.ceil(Game.levels.length/3)-1));Game.ready=true;screenKey='';}
