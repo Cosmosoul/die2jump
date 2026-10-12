@@ -2,6 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%23485059'/%3E%3Crect x='2.5' y='3' width='11' height='7.5' rx='1.5' fill='%23131a20'/%3E%3Crect x='4' y='5' width='3' height='3' fill='%23e8b641'/%3E%3Ccircle cx='4.6' cy='13' r='1.4' fill='%239ea8b2'/%3E%3Ccircle cx='11.4' cy='13' r='1.4' fill='%239ea8b2'/%3E%3C/svg%3E">
 <title>拼死跳跃 · Die to Jump</title>
 <style>
 *{box-sizing:border-box}
@@ -27,14 +28,26 @@ canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelate
 <script src="fx.js"></script>
 <script src="runtime.js"></script>
 <script src="game.js"></script>
+<!-- CRT 老电视后处理层（扫描线 + 屏幕膨胀）。纯屏幕空间覆盖层，不改画布。 -->
+<script src="crt.js"></script>
 <script>
 /* 启动预热：趁加载完成的空闲时间先把「菜单/暂停」两条 BGM 合成好。
    合成只是 CPU 运算、不需要 AudioContext 处于 running，所以能赶在
    玩家按下按键之前完成 → 进主菜单时音乐几乎瞬间响起，消除等待。 */
 (function(){
   function go(){ try{ if(window.AudioSystem&&AudioSystem.bootWarm) AudioSystem.bootWarm(); }catch(e){} }
-  if(document.readyState==='complete') go();
-  else window.addEventListener('load',function(){ setTimeout(go,0); });
+  /* ★推迟到首帧之后★：
+     首次 `new AudioContext()` 是浏览器的音频子系统初始化，实测固定约 150ms
+     （空白页同样如此，与关卡数无关），且是**原子**操作、无法分片。
+     旧版在 load 后用 setTimeout(go,0) 立刻执行 ⇒ 会挤在首屏渲染之前，拖慢第一帧。
+     现在交给 requestIdleCallback：启动画面先画出来，再趁空闲初始化音频；
+     timeout 兜底保证在无渲染环境下（headless / 后台标签）也一定会执行。 */
+  function arm(){
+    if(typeof requestIdleCallback==='function') requestIdleCallback(go,{timeout:1500});
+    else setTimeout(go,60);
+  }
+  if(document.readyState==='complete') arm();
+  else window.addEventListener('load',arm);
 })();
 </script>
 </body>
