@@ -24,6 +24,17 @@ canvas{position:absolute;inset:0;width:100%;height:100%;image-rendering:pixelate
 <div id="accessibility"></div>
 <div id="legacy"><div id="playInfo"></div><div id="playWin"></div><div id="playControls"></div><div id="playFreeLookHint"></div></div>
 <script src="levels.js"></script>
+<!-- 菜单关卡（可操作主菜单的底层关卡）。使用独立全局，避免与 levels.js 互相覆盖。 -->
+<script src="menu-level.js"></script>
+<script>window.__campaign = window.LEVELS_DATA;</script>
+<!-- 更多关卡：levels2.js 内置独立关卡集；缺失（404）时游戏照常启动，仅"更多关卡"为空。 -->
+<script src="levels2.js" onerror="window.__noLevels2=true"></script>
+<script>
+  try { if (typeof window.LEVELS_DATA !== 'undefined' && window.LEVELS_DATA !== window.__campaign) window.LEVELS_DATA2 = window.LEVELS_DATA; } catch(e) {}
+  if (typeof window.LEVELS_DATA2 === 'undefined') window.LEVELS_DATA2 = null;
+  /* 还原战役数据（levels2.js 若用同一全局会把战役顶掉，这里复位） */
+  window.LEVELS_DATA = window.__campaign;
+</script>
 <script src="audio.js"></script>
 <script src="fx.js"></script>
 <script src="runtime.js"></script>
